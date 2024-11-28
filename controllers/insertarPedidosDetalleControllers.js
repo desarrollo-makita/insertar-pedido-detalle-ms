@@ -24,7 +24,7 @@ async function insertarPedidosDetalle(req, res) {
 
     // Armamos data que vamos a mandar al procedimiento almacenado
     for (const pedidosDetalle of data) {
-      const {
+      let {
         pedido_item: ID_Item,
         folio: Folio,
         tipoDocumento: TipoDocumento,
@@ -45,7 +45,7 @@ async function insertarPedidosDetalle(req, res) {
        // Validar y corregir el formato del RUTc
 
        RutCliente = RutCliente.trim();
-       
+
       const formattedRut =
       RutCliente && !RutCliente.includes("-")
            ? `${RutCliente.slice(0, RutCliente.length - 1)}-${RutCliente.slice(-1)}`
