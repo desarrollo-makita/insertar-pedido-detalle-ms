@@ -42,8 +42,10 @@ async function insertarPedidosDetalle(req, res) {
         observacion: Observacion,
       } = pedidosDetalle;
 
-       // Validar y corregir el formato del RUT
-       const formattedRut = RutCliente === '77677513P' ? '77677513-P' : RutCliente;
+       // Validar y corregir el formato del RUTc
+        RutCliente && !RutCliente.includes("-")
+          ? `${RutCliente.slice(0, -1)}-${RutCliente.slice(-1)}`
+          : RutCliente;
 
       const request = new sql.Request(); // Nueva instancia de request en cada iteración
 
