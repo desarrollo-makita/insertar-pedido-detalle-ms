@@ -42,6 +42,9 @@ async function insertarPedidosDetalle(req, res) {
         observacion: Observacion,
       } = pedidosDetalle;
 
+       // Validar y corregir el formato del RUT
+       const formattedRut = formatRut(RutCliente);
+
       const request = new sql.Request(); // Nueva instancia de request en cada iteración
 
       // Ejecutar el procedimiento almacenado con los parámetros
@@ -61,7 +64,7 @@ async function insertarPedidosDetalle(req, res) {
         .input("TipoItem", sql.VarChar(20), TipoItem)
         .input("Descuento", sql.Int, 0)
         .input("idOCompra", sql.Int, idOCompra)
-        .input("RutCliente", sql.VarChar(250), RutCliente)
+        .input("RutCliente", sql.VarChar(250), formattedRut) 
         .input("Observacion", sql.VarChar(200), Observacion)
         .execute("insertaPedidosDetalleSP");
 
@@ -86,6 +89,16 @@ async function insertarPedidosDetalle(req, res) {
         error: `Error en el servidor [insertar-pedido-detalle-ms] :  ${error.message}`,
       });
   }
+}
+
+// Función para validar y corregir el formato del RUT
+function formatRut(rut) {
+  if (!rut.includes("-")) {
+    // Insertar un guion antes del último carácter
+    return `${rut.slice(0, -1)}-${rut.slice(-1)}`;
+  }
+  // Si ya tiene el formato correcto, devolver tal cual
+  return rut;
 }
 
 module.exports = {
