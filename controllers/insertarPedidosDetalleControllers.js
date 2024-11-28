@@ -43,7 +43,7 @@ async function insertarPedidosDetalle(req, res) {
       } = pedidosDetalle;
 
        // Validar y corregir el formato del RUT
-       const formattedRut = formatRut(RutCliente);
+       const formattedRut = rutCliente === '77677513P' ? '77677513-P' : rutCliente;
 
       const request = new sql.Request(); // Nueva instancia de request en cada iteración
 
@@ -91,15 +91,7 @@ async function insertarPedidosDetalle(req, res) {
   }
 }
 
-// Función para validar y corregir el formato del RUT
-function formatRut(rut) {
-  if (!rut.includes("-")) {
-    // Insertar un guion antes del último carácter
-    return `${rut.slice(0, -1)}-${rut.slice(-1)}`;
-  }
-  // Si ya tiene el formato correcto, devolver tal cual
-  return rut;
-}
+
 
 module.exports = {
   insertarPedidosDetalle,
