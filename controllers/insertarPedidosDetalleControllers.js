@@ -43,10 +43,10 @@ async function insertarPedidosDetalle(req, res) {
       } = pedidosDetalle;
 
        // Validar y corregir el formato del RUTc
-       const formattedRut =
-       RutCliente && !RutCliente.includes("-")
-         ? `${RutCliente.slice(0, -1)}-${RutCliente.slice(-1)}`
-         : RutCliente;
+      const formattedRut =
+      RutCliente && !RutCliente.includes("-")
+           ? `${RutCliente.slice(0, RutCliente.length - 1)}-${RutCliente.slice(-1)}`
+           : RutCliente;
      
      console.log("RuuuuuuuuuuuuuuuuuuuuuuuuuuuuuutCliente :", formattedRut);
 
