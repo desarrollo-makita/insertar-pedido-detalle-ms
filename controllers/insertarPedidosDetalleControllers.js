@@ -43,9 +43,12 @@ async function insertarPedidosDetalle(req, res) {
       } = pedidosDetalle;
 
        // Validar y corregir el formato del RUTc
-        RutCliente && !RutCliente.includes("-")
-          ? `${RutCliente.slice(0, -1)}-${RutCliente.slice(-1)}`
-          : RutCliente;
+       const formattedRut =
+       RutCliente && !RutCliente.includes("-")
+         ? `${RutCliente.slice(0, -1)}-${RutCliente.slice(-1)}`
+         : RutCliente;
+     
+     console.log("RuuuuuuuuuuuuuuuuuuuuuuuuuuuuuutCliente :", formattedRut);
 
           console.log("RuuuuuuuuuuuuuuuuuuuuuuuuuuuuuutCliengte :" ,RutCliente )
       const request = new sql.Request(); // Nueva instancia de request en cada iteración
@@ -67,7 +70,7 @@ async function insertarPedidosDetalle(req, res) {
         .input("TipoItem", sql.VarChar(20), TipoItem)
         .input("Descuento", sql.Int, 0)
         .input("idOCompra", sql.Int, idOCompra)
-        .input("RutCliente", sql.VarChar(250), RutCliente) 
+        .input("RutCliente", sql.VarChar(250), formattedRut) 
         .input("Observacion", sql.VarChar(200), Observacion)
         .execute("insertaPedidosDetalleSP");
 
