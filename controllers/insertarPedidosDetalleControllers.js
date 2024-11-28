@@ -14,7 +14,7 @@ const moment = require("moment");
 async function insertarPedidosDetalle(req, res) {
   const data = req.body.item;
   logger.info(`Iniciamos la funcion insertarPedidosDetalle`);
-  logger.debug(`data ${JSON.stringify(data)}`);
+  logger.debug(`dataInsertarPedidoDetalle ${JSON.stringify(data)}`);
 
   let result;
   let responseData = [];
