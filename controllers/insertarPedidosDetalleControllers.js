@@ -78,7 +78,7 @@ async function insertarPedidosDetalle(req, res) {
         .execute("insertaPedidosDetalleSP");
 
       result.tipoDocumento = TipoDocumento;
-      result.codigo_posto = formattedRut;
+      result.codigo_posto = RutCliente;
       result.pedido = Pedido_ID;
 
       responseData.push(result);
