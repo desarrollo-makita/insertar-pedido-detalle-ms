@@ -47,6 +47,7 @@ async function insertarPedidosDetalle(req, res) {
           ? `${RutCliente.slice(0, -1)}-${RutCliente.slice(-1)}`
           : RutCliente;
 
+          console.log("RuuuuuuuuuuuuuuuuuuuuuuuuuuuuuutCliengte :" ,RutCliente )
       const request = new sql.Request(); // Nueva instancia de request en cada iteración
 
       // Ejecutar el procedimiento almacenado con los parámetros
