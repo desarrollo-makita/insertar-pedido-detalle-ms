@@ -66,7 +66,7 @@ async function insertarPedidosDetalle(req, res) {
         .input("TipoItem", sql.VarChar(20), TipoItem)
         .input("Descuento", sql.Int, 0)
         .input("idOCompra", sql.Int, idOCompra)
-        .input("RutCliente", sql.VarChar(250), formattedRut) 
+        .input("RutCliente", sql.VarChar(250), RutCliente) 
         .input("Observacion", sql.VarChar(200), Observacion)
         .execute("insertaPedidosDetalleSP");
 
